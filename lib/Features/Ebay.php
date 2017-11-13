@@ -369,7 +369,4 @@ class Ebay extends BaseFeature {
         return true ;
     }
 
-    public function getDependencies() {
-    }
-
 }
