@@ -19,6 +19,7 @@ use Features\ProjectCompletion\CompletionEventStruct;
 use Features\ReviewImproved\Model\QualityReportModel;
 use Klein\Klein;
 use Projects_ProjectStruct;
+use Translations_TranslationVersionDao;
 
 class Ebay extends BaseFeature {
 
@@ -162,7 +163,7 @@ class Ebay extends BaseFeature {
         if ( intval( $this->old_translation[ 'version_number' ] ) == 0 ) {
             $original = $this->old_translation[ 'translation' ];
         } else {
-            $version0 = \Translations_TranslationVersionDao::getVersionNumberForTranslation(
+            $version0 = ( new Translations_TranslationVersionDao())->getVersionNumberForTranslation(
                     $this->translation[ 'id_job' ], $this->translation[ 'id_segment' ], 0
             );
             $original = $version0->translation;
