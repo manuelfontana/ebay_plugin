@@ -47,13 +47,10 @@ class AnalyzeController extends BaseKleinViewController {
     }
 
     public function respond() {
-        $decorator = new AnalyzeDecorator( $this->model );
-
-        $decorator->setUser( $this->currentUser() ) ;
-        $this->setLoggedUser() ;
-
+        $this->performValidations();
         $this->setDefaultTemplateData() ;
 
+        $decorator = new AnalyzeDecorator( $this->model );
         $decorator->decorate( $this->view );
 
         $this->project->getFeatures()->run('decorateTemplate', $this->view, $this);
@@ -64,16 +61,6 @@ class AnalyzeController extends BaseKleinViewController {
 
     public function getModel() {
         return $this->model ;
-    }
-
-    private function currentUser() {
-        \Bootstrap::sessionStart();
-        $user = null;
-        if ( !empty( $_SESSION['uid'] ) ) {
-            $user_dao = new \Users_UserDao( \Database::obtain());
-            $user = $user_dao->getByUid( $_SESSION['uid']);
-        }
-        return $user;
     }
 
     private function findProject() {
