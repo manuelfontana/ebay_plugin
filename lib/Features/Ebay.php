@@ -50,7 +50,7 @@ class Ebay extends BaseFeature {
      *
      * @throws Exception
      */
-    public function beginDoAction( controller $controller, $params) {
+    public function beginDoAction( controller $controller, $params = [] ) {
 
         $controllerName = get_class( $controller );
         if ( $controllerName == 'analyzeController' ) {
