@@ -24,6 +24,8 @@ use Translations_TranslationVersionDao;
 
 class Ebay extends BaseFeature {
 
+    const FEATURE_CODE = 'ebay';
+
     private $translation;
     private $old_translation;
     private $edit_distance;
