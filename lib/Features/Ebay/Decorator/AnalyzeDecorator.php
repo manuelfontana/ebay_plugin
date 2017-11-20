@@ -91,8 +91,6 @@ class AnalyzeDecorator extends AbstractModelViewDecorator {
         $langDomains = Langs_LanguageDomains::getInstance();
         $this->subject = $langDomains::getDisplayDomain(null);
 
-        $template->isLoggedIn = $this->user != null ;
-
         $misconfiguration = Status::thereIsAMisconfiguration();
         if ( $misconfiguration && mt_rand( 1, 3 ) == 1 ) {
             $msg = "<strong>The analysis daemons seem not to be running despite server configuration.</strong><br />Change the application configuration or start analysis daemons.";
@@ -124,7 +122,6 @@ class AnalyzeDecorator extends AbstractModelViewDecorator {
         }
 
         $template->dqf_intermediate_project = $intermediate_project_id ;
-        $template->user = $this->user ;
 
         if ( $this->user ) {
             $template->dqf_user = new Dqf\Model\UserModel( $this->user ) ;

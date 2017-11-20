@@ -51,6 +51,7 @@ class AnalyzeController extends BaseKleinViewController {
         $this->setDefaultTemplateData() ;
 
         $decorator = new AnalyzeDecorator( $this->model );
+        $decorator->setUser( $this->user ) ;
         $decorator->decorate( $this->view );
 
         $this->project->getFeatures()->run('decorateTemplate', $this->view, $this);
@@ -66,7 +67,7 @@ class AnalyzeController extends BaseKleinViewController {
     private function findProject() {
         $this->project = \Projects_ProjectDao::findByIdAndPassword(
                 $this->request->param('id_project'),
-            $this->request->param('password')
+                $this->request->param('password')
         );
     }
 
