@@ -19,6 +19,7 @@ use Features\Ebay\Utils\SkippedSegments;
 use Features\ProjectCompletion\CompletionEventStruct;
 use Features\ReviewImproved\Model\QualityReportModel;
 use Klein\Klein;
+use Projects_MetadataDao;
 use Projects_ProjectStruct;
 use Translations_TranslationVersionDao;
 
@@ -95,7 +96,10 @@ class Ebay extends BaseFeature {
     public function validateProjectCreation( $projectStructure ) {
         $this->__validateDueDate( $projectStructure );
 
-        $projectStructure[ 'metadata' ][ 'word_count_type' ] = \Projects_MetadataDao::WORD_COUNT_RAW;
+        $projectStructure[ 'metadata' ][ 'word_count_type' ] = Projects_MetadataDao::WORD_COUNT_RAW;
+
+        $projectStructure['tms_engine'] = 0 ;
+        $projectStructure['mt_engine']  = 0 ;
     }
 
     public function filterSetTranslationResult( $response, $params ) {
