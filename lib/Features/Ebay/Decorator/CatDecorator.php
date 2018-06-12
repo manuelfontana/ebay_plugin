@@ -50,6 +50,8 @@ class CatDecorator extends \AbstractDecorator {
         $this->template->allow_link_to_analysis = false ;
         $this->template->translation_matches_enabled = false ;
 
+        $this->template->auto_copy_suggestion = false ;
+
     }
 
 }
